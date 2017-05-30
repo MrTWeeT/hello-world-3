@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+    <head>
+    <title>Demo audio</title>
+    </head>
+
+<body>
+    
+    <!--
+    <audio controls 
+           src="Adagio.mp3" type="audio/mpeg">
+    </audio>
+    -->
+    <video id="bunny"
+           controls
+           heigth="200"
+           width="300"
+           poster="big_buck_bunnyPoster.png"
+           src="big_buck_bunny.mp4" type="video/mp4"
+           >
+    </video>
+    <br>
+    <span id="posicioactual"></span>/<span id="duraciototal"></span>
+    <br>
+    <button id="botoReproduir">Play</button>
+    <button id="botoPausar">Pause</button>
+    <button id="menys">-</button>
+    <button id="mes">+</button>
+    
+    <script>
+        window.onload = function(){
+            //carrego a videoBunny la referencia al HTML del video
+            var videoBunny = document.getElementById("bunny");
+            //carrego a bReproduir la referencia al HTML del botoReproduir
+            var bReproduir = document.getElementById("botoReproduir"); 
+            //carrego a bPausar la referencia al HTML del botoPausar
+            var bPausar = document.getElementById("botoPausar");
+            
+            //carrego a dTotal la referencia al HTML de duraciototal
+            var dTotal = document.getElementById("duraciototal"); 
+            
+            //carrego a pos la referencia al HTML de posicioactual
+            var pos = document.getElementById("posicioactual");
+            
+            var bMes = document.getElementById("mes");
+            var bMenys = document.getElementById("menys");
+            
+            //DEFINEIXO UN EVENT QUE S'EXECUTI QUAN CLIQUEN A BOTOREPRODUIR
+            bReproduir.onclick = function(){
+                videoBunny.play(); 
+                dTotal.innerHTML = Math.floor(videoBunny.duration);
+            }
+
+            //DEFINEIXO UN EVENT QUE S'EXECUTI QUAN CLIQUEN A BOTOPAUSAR
+            bPausar.onclick = function(){
+                videoBunny.pause();  
+            }
+            
+            //event de pujar volum quan cliquem a "+"
+            bMes.onclick = function(){
+                videoBunny.volume = videoBunny.volume + 0.2; 
+            }
+            
+            //event de baixar volum quan cliquem a "-"
+            bMenys.onclick = function(){
+                videoBunny.volume = videoBunny.volume - 0.2; 
+            }
+
+            //DEFINEIXO UN EVENT QUE S'EXECUTI QUAN 
+            //CANVIA L'INSTANT DE REPRODUCCIO
+            videoBunny.ontimeupdate = function(){
+               pos.innerHTML = Math.floor(videoBunny.currentTime); 
+            }
+            
+        }
+        
+
+    </script>
+</body>
+
+</html>
+
+
+
+
+
+
+
+
